@@ -128,7 +128,7 @@ RUN GPG_KEYS=B0F4253373F8F6F510D42178520A9993A1C052F8 \
     \
     # Bring in tzdata so users could set the timezones through the environment
     # variables
-    && apk add --no-cache tzdata \
+    && apk add --no-cache tzdata curl \
     \
     # forward request and error logs to docker log collector
     && ln -sf /dev/stdout /var/log/nginx/access.log \
@@ -146,3 +146,5 @@ EXPOSE 443
 STOPSIGNAL SIGTERM
 
 ENTRYPOINT ["/docker-entrypoint.sh"]
+
+HEALTHCHECK --interval=5s --timeout=1s CMD curl -k -f https://localhost/nginx-health || exit 1

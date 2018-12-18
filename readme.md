@@ -38,4 +38,5 @@ docker build --no-cache --pull --squash -t xigen/nginx .
 ```sh
 docker run --rm -t xigen/nginx nginx -t
 docker-compose up
+docker inspect --format="{{json .State.Health}}" nginx
 ```
