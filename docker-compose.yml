@@ -1,0 +1,12 @@
+# This is an example using the nginx image to proxy requests to a fpm backend
+version: '3.1'
+
+services:
+    fpm:
+        image: xigen/php:fpm-7
+    nginx:
+        image: xigen/nginx
+        depends_on:
+            - fpm
+        ports:
+            - "443:443"
