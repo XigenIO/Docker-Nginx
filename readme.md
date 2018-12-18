@@ -7,10 +7,24 @@ Nginx docker image based off the office docker image. Compiled to support only m
 
 # Building
 ```sh
-docker build --no-cache --pull --squash -t xigen/nginx
+docker build --no-cache --pull --squash -t xigen/nginx .
 ```
 
 # Testing
 ```sh
 docker run --rm -t xigen/nginx nginx -t
+```
+
+# Usage
+
+```sh
+version: '3.1'
+
+services:
+    fpm:
+        image: xigen/php:fpm-7
+    nginx:
+        image: xigen/nginx
+        ports:
+            - "443"
 ```
