@@ -5,8 +5,10 @@ services:
     fpm:
         image: xigen/php:fpm-7
     nginx:
+        container_name: nginx
         image: xigen/nginx
         depends_on:
             - fpm
         ports:
+            - "80:80"
             - "443:443"
