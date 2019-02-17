@@ -1,13 +1,13 @@
-# Nginx
-Nginx docker image based off the office docker image. Compiled to support only modern TLS versions (`1.2`, `1.3`), `http2` support and `brotli` compression.
+# Docker-Nginx
+Nginx docker image based using the alpine image. Compiled to support only modern TLS versions (`1.2`, `1.3`), `http2` support and `brotli` compression by default.
 
-[![](https://images.microbadger.com/badges/image/xigen/nginx.svg)](https://microbadger.com/images/xigen/nginx:latest) [xigen/nginx](https://git.xigen.co.uk/docker/nginx/blob/master/Dockerfile)
+[![](https://images.microbadger.com/badges/image/xigen/nginx.svg)](https://microbadger.com/images/xigen/nginx:latest) [xigen/nginx](https://github.com/XigenIO/Docker-Nginx/blob/master/Dockerfile)
 
 ```sh
 docker pull xigen/nginx
 ```
 
-# Usage
+# Recommended usage
 The recommended way to run this image is via docker-compose. Here is an example
 of using this image to proxy requests to the fpm image. As part of the containers
 entrypoint it will check connection to the fpm container and inject the required
