@@ -121,11 +121,11 @@ RUN GPG_KEYS=B0F4253373F8F6F510D42178520A9993A1C052F8 \
     && apk del .gettext \
     && rm -rf /usr/src \
     && mv /tmp/envsubst /usr/local/bin/ \
-    \
-    && openssl genrsa -out /etc/nginx/ssl/app.key 4096 \
-    && openssl req -new -key /etc/nginx/ssl/app.key -out /etc/nginx/ssl/app.csr -subj "/C=GB/ST=GB/L=London/O=Xigen Development/OU=Digital/CN=xigen.test" \
-    && openssl x509 -req -days 3650 -in /etc/nginx/ssl/app.csr -signkey /etc/nginx/ssl/app.key -out /etc/nginx/ssl/app.pem \
-    \
+    #\
+    #&& openssl genrsa -out /etc/nginx/ssl/app.key 4096 \
+    #&& openssl req -new -key /etc/nginx/ssl/app.key -out /etc/nginx/ssl/app.csr -subj "/C=GB/ST=GB/L=London/O=Xigen Development/OU=Digital/CN=xigen.test" \
+    #&& openssl x509 -req -days 3650 -in /etc/nginx/ssl/app.csr -signkey /etc/nginx/ssl/app.key -out /etc/nginx/ssl/app.pem \
+    #\
     # Bring in tzdata so users could set the timezones through the environment
     # variables
     && apk add --no-cache tzdata curl \
@@ -137,6 +137,7 @@ RUN GPG_KEYS=B0F4253373F8F6F510D42178520A9993A1C052F8 \
 COPY conf/ /etc/nginx/conf
 COPY nginx.conf /etc/nginx/nginx.conf
 COPY docker-entrypoint.sh /
+COPY ssl/app.key ssl/app.pem /etc/nginx/
 
 RUN chmod a+x /docker-entrypoint.sh
 
