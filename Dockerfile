@@ -148,4 +148,4 @@ STOPSIGNAL SIGTERM
 
 ENTRYPOINT ["/docker-entrypoint.sh"]
 
-HEALTHCHECK --interval=5s --timeout=1s CMD curl -k -f https://localhost/nginx-health || exit 1
+HEALTHCHECK --interval=60s --timeout=1s CMD curl -k -f https://localhost/nginx-health || exit 1
