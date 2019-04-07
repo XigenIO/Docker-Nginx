@@ -138,8 +138,8 @@ COPY conf/ /etc/nginx/conf
 COPY nginx.conf /etc/nginx/nginx.conf
 COPY docker-entrypoint.sh /
 COPY ssl/app.key ssl/app.pem /etc/nginx/
-
-RUN chmod a+x /docker-entrypoint.sh
+COPY bin /etc/nginx/bin/
+RUN chmod +x /docker-entrypoint.sh /etc/nginx/bin/*
 
 EXPOSE 80
 EXPOSE 443
