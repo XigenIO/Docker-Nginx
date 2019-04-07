@@ -1,11 +1,10 @@
 # This is an example using the nginx image to proxy requests to a fpm backend
-version: '3.1'
+version: '3.4'
 
 services:
     fpm:
-        image: xigen/php:fpm-7
+        image: xigen/php:fpm-73
     nginx:
-        container_name: nginx
         image: xigen/nginx
         depends_on:
             - fpm
