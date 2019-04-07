@@ -5,7 +5,7 @@
 echo "Staging xigen/nginx Docker container";
 
 echo "Checking for fpm container"
-nc -zv fpm 9000 &> /dev/null
+timeout 2 nc -zv fpm 9000 &> /dev/null
 
 if [ "$?" -eq "0" ]; then
     echo "Connection successfull to connect to fpm container"
