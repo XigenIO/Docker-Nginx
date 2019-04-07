@@ -1,10 +1,15 @@
-FROM alpine:latest
+FROM alpine:edge
 
 ENV NGINX_VERSION 1.15.10
 
 WORKDIR /var/www
 
 COPY ./patches /usr/src/patches
+
+RUN echo https://uk.alpinelinux.org/alpine/edge/main > /etc/apk/repositories; \
+    echo https://uk.alpinelinux.org/alpine/edge/community >> /etc/apk/repositories
+
+RUN apk update
 
 RUN GPG_KEYS=B0F4253373F8F6F510D42178520A9993A1C052F8 \
     && CONFIG="\
@@ -60,6 +65,7 @@ RUN GPG_KEYS=B0F4253373F8F6F510D42178520A9993A1C052F8 \
         libxslt-dev \
         gd-dev \
         patch \
+        gnupg \
     && git clone https://github.com/google/ngx_brotli.git /usr/src/ngx_brotli \
     && cd /usr/src/ngx_brotli && git submodule update --init && cd /usr/src/ \
     && curl -fSL https://nginx.org/download/nginx-$NGINX_VERSION.tar.gz -o nginx.tar.gz \
