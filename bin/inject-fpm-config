@@ -1,13 +1,17 @@
 #!/bin/sh
 
+FPM_PORT=${FPM_PORT:-9000}
+FPM_SERVICE=${FPM_SERVICE:-fpm}
+
+echo 'location ~ \.php(/|$) {'
+
 cat <<END
-location ~ \.php(/|$) {
     http2_push_preload on;
     fastcgi_pass $FPM_SERVICE:$FPM_PORT;
     include fastcgi_params;
-
-    fastcgi_param DOCUMENT_ROOT /var/www/public;
-    fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
-    internal;
-}
 END
+
+echo '    fastcgi_param DOCUMENT_ROOT /var/www/public;'
+echo '    fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;'
+echo '    internal;'
+echo '}'

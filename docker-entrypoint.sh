@@ -18,7 +18,7 @@ if [ "$?" -eq "0" ]; then
     echo "Connection successfull to connect to $FPM_SERVICE service"
     echo "Injecting fpm config"
 
-     /etc/nginx/bin/inject-fpm-config >> /etc/nginx/conf/pre-vhost.conf
+    /etc/nginx/bin/inject-fpm-config >> /etc/nginx/conf/pre-vhost.conf
 else
     echo "Unable to connect to $FPM_SERVICE service"
 fi
