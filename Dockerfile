@@ -1,6 +1,6 @@
 FROM alpine:3.13
 
-ENV NGINX_VERSION 1.15.10
+ENV NGINX_VERSION 1.15.12
 
 WORKDIR /var/www
 
@@ -76,7 +76,7 @@ RUN GPG_KEYS=B0F4253373F8F6F510D42178520A9993A1C052F8 \
         gpg --keyserver "$server" --keyserver-options timeout=10 --recv-keys "$GPG_KEYS" && found=yes && break; \
     done; \
     test -z "$found" && echo >&2 "error: failed to fetch GPG key $GPG_KEYS" && exit 1; \
-    && gpg --batch --verify nginx.tar.gz.asc nginx.tar.gz \
+    gpg --batch --verify nginx.tar.gz.asc nginx.tar.gz \
     && rm -rf "$GNUPGHOME" nginx.tar.gz.asc \
     && mkdir -p /usr/src \
     && tar -zxC /usr/src -f nginx.tar.gz \

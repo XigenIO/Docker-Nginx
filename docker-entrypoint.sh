@@ -5,6 +5,7 @@ FPM_SERVICE=${FPM_SERVICE:-fpm}
 
 echo "Staging xigen/nginx Docker container";
 
+nginx -v
 
 echo "#####################"
 echo "# FPM CONFIGURATION #"
