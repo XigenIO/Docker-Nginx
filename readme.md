@@ -20,7 +20,7 @@ version: '3.4'
 
 services:
     fpm:
-        image: xigen/php:fpm-73
+        image: xigen/php:fpm-74
     nginx:
         image: xigen/nginx
         depends_on:
